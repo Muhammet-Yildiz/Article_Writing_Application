@@ -1,0 +1,26 @@
+{% extends 'layout.html' %} {% block static %}
+
+<style>
+    form {
+        max-width: 550px;
+        margin: 0 auto;
+    }
+</style>
+{% endblock static %} {% block body %} {% load crispy_forms_tags %}
+<br><br>
+<form method="post">
+
+    <h4 style="color:rgb(4, 88, 184) ; text-align :center  ">GİRİŞ YAP </h4><br> {% csrf_token %} {{form|crispy}}
+    <br>
+    <button style="background-color: rgb(4, 88, 184); width :100%" type="submit" class="btn text-white "> Giriş yap</button>
+
+    <br>
+    <p style=" width:90%  ">
+        <center>
+
+            <a style="color :rgb(4, 88, 184) ; " href="{% url 'password_reset' %}">Parolamı unuttum ?</a>
+        </center>
+    </p>
+</form>
+
+{% endblock body %}

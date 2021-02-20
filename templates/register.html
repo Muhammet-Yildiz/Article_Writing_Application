@@ -1,0 +1,56 @@
+{% extends 'layout.html' %} {% block script %}
+
+
+<script src="/static/js/registe.js"></script>
+
+
+{% endblock script %} {% block static %}
+
+<link rel="stylesheet" href="/static/css/register.css">
+
+
+<style>
+    form {
+        max-width: 650px;
+        margin: 0 auto;
+    }
+</style>
+{% endblock static %} {% block body %}
+
+
+
+<form method="post">
+    {% load crispy_forms_tags%}<br>
+    <h4 style="color: rgb(4, 88, 184); text-align :center">KAYIT OL </h4>
+
+    {% csrf_token %} {{form|crispy}}
+    <i class="far fa-eye see"></i>
+    <i class="far fa-eye see2"></i>
+
+    <br>
+    <button class="signupBtn" type="submit">Kayıt Ol</button>
+
+    <div class="userlar" style="display: none;">
+        {% for x in all_user %}
+        <p>{{x}}</p>
+        {% endfor %}
+
+    </div>
+    <div class="emailler" style="display: none;">
+        {% for x in all_email %}
+        <p>{{x.email}}</p>
+        {% endfor %}
+
+    </div>
+    <small class="helptext ">  </small>
+    <small class="helptext2 ">  </small>
+    <small class="helptext3 ">  </small>
+
+</form>
+
+
+
+
+
+
+{% endblock body %}

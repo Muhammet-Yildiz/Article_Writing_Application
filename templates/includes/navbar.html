@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/include/navbar.css">
+
+
+</head>
+
+<body>
+
+    <header>
+        <div class="employee">
+
+            <div class="sec1">
+                <li class="logo ">
+                    <a href="{% url 'index' %}">
+                        <h4> Makale || Yaz </h4>
+                    </a>
+                </li>
+                <li><a href="{% url 'about'%}">Hakkımızda </a></li>
+                <li><a href="{% url 'article:articles'%}">Makaleler</a></li>
+
+
+            </div>
+
+            <div class="sec2">
+
+                {% if request.user.is_authenticated %}
+                <!-- demekki giriş yapmıs kullanıcı  -->
+                <li>
+                    <a href="{% url 'user:profile'%}">Profile</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'article:dashboard'%}">Kontrol Paneli</a>
+                </li>
+
+
+                <li>
+                    <a href="{% url 'user:logout'%}">Çıkış Yap</a>
+                </li>
+                {% else %}
+
+                <!-- demekki giriş yapmamıs henuz : -->
+
+                <li>
+                    <a href="{% url 'user:login'%}">Giriş Yap</a>
+                </li>
+                <li>
+                    <a href="{% url 'user:register'%}">Kayıt Ol</a>
+                </li>
+
+
+                {% endif %}
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+    </header>
+
+
+</body>
+
+</html>

@@ -1,0 +1,250 @@
+ {% extends 'layout.html' %} {% block static %} {% load humanize %}
+<link rel="stylesheet" href="/static/css/detail.css"> {% endblock static %} {% block script %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<script src="/static/js/detaill.js"></script>
+{% endblock script %} {% block body %} {% load static %}
+
+<h3 style="font-weight: bold ; text-transform : uppercase; color :rgb(3, 70, 179) ">{{article.title}}</h3>
+
+<small class="text-dark font-weight-bold">   {{article.author}}  tarafından yayınlandı  </small>
+
+
+
+<br><br>
+<small class="mt-4 text-danger font-weight-bold"> {{ article.created_date}} </small>
+
+<div style="border: rgba(5, 97, 97, 0.144) solid 2px ; margin : 2rem 0 ;padding: 2rem  ; background-color : rgb(245, 245, 245) ;position :relative">
+    <div style=" position: relative; max-width: 550px ; max-height: 410px ; ">
+        {% if article.article_image %}
+        <img style=" width: 100% ;height: 390px ; background-size: cover;  " src="{{article.article_image.url}}" alt="photo "> {% endif %}
+    </div><br>
+    <p>
+        {{article.content|safe}}
+
+    </p>
+
+
+</div>
+
+
+
+<div class="comment-field">
+    <br> {% csrf_token %}
+    <textarea name="comment_content" class="textarea--auto-height yorum-input" placeholder="Yorumunuz .."></textarea>
+    <button type="button" class="comment-btn" data-user="{{request.user}}" data-photo="{{request.user.profile.profile_image.url}}" data-articleid="{{article.id}}">Yorum Yap </button>
+
+
+</div>
+
+
+
+
+<br><br>
+
+<br>
+<h3>YORUMLAR </h3>
+<hr>
+<div class="ALL">
+
+    {% if comments %}
+
+
+
+    <br> {% for comment in comments %}
+
+
+
+
+
+    <div class="Comment-emp">
+
+        <div class="user-image">
+            <img style="border-radius: 50%;" class="user-img" width="50px" height="50px" src="{{comment.comment_author.profile.profile_image.url }}" alt="Card image">
+
+        </div>
+        <div class="Comment-content">
+
+            <div class="Comment-author">
+
+                <h6>{{comment.comment_author}} </h6>
+                <small>{{comment.comment_date|naturaltime}}</small>
+            </div>
+            <pre>
+{{comment.comment_content}}
+        </pre>
+            <div class="Comment-vote">
+
+                {% if request.user in comment.likes.all %}
+
+
+                <a data-commentid="{{comment.id}}" class="likelink">
+                    <i style="color:rgb(0, 102, 255) " class="fas fa-thumbs-up "></i>
+                </a>
+
+                {% else %}
+                <a data-commentid="{{comment.id}}" class="likelink">
+                    <i style="color: black; " class="fas fa-thumbs-up "></i>
+                </a>
+
+                {% endif %}
+
+                <span data-likeNumber="{{comment.likes.count}}" class="xa" style="padding-right: 1rem;padding-left : 0.5rem ">{{comment.likes.count}} </span> {% if request.user in comment.dislikes.all %}
+                <a data-commentid="{{comment.id}}" class="dislikelink">
+                    <i style="color: rgb(0, 102, 255); " class="fas fa-thumbs-down "></i>
+                </a>
+                {% else %}
+                <a data-commentid="{{comment.id}}" class="dislikelink">
+                    <i style="color: black; " class="fas fa-thumbs-down "></i>
+                </a>
+                {% endif %}
+
+
+
+                <span style="padding-left: 0.5rem;">{{comment.dislikes.count}} </span>
+
+
+
+                <button class="yanıtla1">YANITLA</button><br>
+                <br>
+
+            </div>
+            <div class="Yanıtla-form">
+                <div class="yanıtla-emp">
+
+                    <div class="user-image">
+                        <img style="border-radius: 50%;" class="user-img" width="45px" height="45px" src="{{user.profile.profile_image.url}}" alt="Card image">
+                    </div>
+                    <div class="cevapla-input">
+                        <form action="{% url 'article:answer' comment.id %}" method="post">
+                            {% csrf_token %}
+
+                            <textarea name="answer_content" class="textarea--auto-height answer-input" placeholder="Cevabınız .."></textarea>
+                            <br><br>
+                            <div class="btn-twice">
+                                <button class="cancel" type="button">İptal   </button>
+                                <button class="yanıtla2" type="button">YANITLA</button>
+                            </div>
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            {% if comment.answerr.all.count != 0 %}
+            <div class="seeAnswerMore">
+
+                <i class="fas fa-sort-up"></i>
+                <div class="görüntüle"> {{ comment.answerr.all.count}} yanıtı görüntüle </div>
+
+            </div>
+            {% endif %}
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+    {% if comment.answerr.all %}
+
+
+
+    <div class="Answer-view">
+
+
+
+        {% for answer in comment.answerr.all %}
+
+        <div class="Answer-emp">
+
+
+            <div class="user-image">
+                <img style="border-radius: 50%;" class="user-img" width="40px" height="40px" src="{{answer.answer_author.profile.profile_image.url}}" alt="Card image">
+
+            </div>
+            <div class="Answer-content">
+
+                <div class="Answer-author">
+
+                    <h6>{{answer.answer_author}} </h6>
+                    <small>{{answer.answer_date|naturaltime}}</small>
+                </div>
+                <pre>
+{{answer.answer_content}}
+            </pre>
+                <div class="Answer-vote">
+                    {% if request.user in answer.likess.all %}
+                    <a data-answerid="{{answer.id}}" class="answerlikelink">
+                        <i style="color: rgb(0, 102, 255); " class="fas fa-thumbs-up "></i>
+                    </a>
+
+                    {% else %}
+                    <a data-answerid="{{answer.id}}" class="answerlikelink">
+                        <i style="color: black; " class="fas fa-thumbs-up "></i>
+
+                    </a>
+
+                    {% endif %}
+
+                    <span class="ta" style="margin: 0 1rem 0 0.5rem ;"> {{answer.total_likess}} </span> {% if request.user in answer.dislikess.all %}
+
+                    <a data-answerid="{{answer.id}}" class="answerdislikelink">
+                        <i style="color:rgb(0, 102, 255); " class="fas fa-thumbs-down "></i>
+
+                    </a>
+
+                    {% else %}
+
+                    <a data-answerid="{{answer.id}}" class="answerdislikelink">
+                        <i style="color: black; " class="fas fa-thumbs-down "></i>
+                    </a>
+
+                    {% endif %}
+
+
+                    <span style="margin-left: 0.5rem;"> {{answer.total_dislikess}} </span>
+
+
+                    <button class="answer-yanıtla">YANITLA</button>
+
+
+
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        <br> {% endfor %}
+
+
+
+
+
+
+
+    </div>
+    {% endif %} {% endfor %} {% else %}
+    <br>
+    <div class="alert alert-info">
+
+        Henüz bir yorum yapılmamıs . İlk yorumu siz yapın .
+    </div>
+    {% endif %}
+</div>
+
+
+
+
+
+{% endblock body %}

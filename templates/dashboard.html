@@ -1,0 +1,49 @@
+{% extends 'layout.html' %} {% block static %} {% endblock static %} {% block body %}
+
+<h3 style="font-weight: bold;">KONTROL PANELİ </h3> <br>
+<h6 style="color:rgb(4, 4, 163) "> Hoşgeldin {{request.user.username }}</h6><br> {% if articles %}
+
+
+<table class="table  ">
+    <thead>
+        <tr>
+            <th scope="col">İD</th>
+            <th scope="col">BAŞLIK </th>
+            <th scope="col">YAZAR </th>
+            <th scope="col">OLUSTURULMA TARİHİ </th>
+            <th scope="col">GÜNCELLE</th>
+            <th scope="col">SİL </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for article in articles %}
+
+
+        <tr>
+            <th scope="row">{{article.id}}</th>
+            <td> <a style="color: rgb(7, 7, 167); text-decoration : none " href="{% url 'article:detail' article.id %}">   {{article.title}}</a> </td>
+            <td>{{article.author}}</td>
+            <td>{{article.created_date}}</td>
+            <td> <a href="{% url 'article:update' article.id %}" class=" btn btn-dark">Güncelle</a> </td>
+            <td> <a onclick="return confirm('Bu makaleyi silmek  istediginize  emin misiniz ? ') " href="{% url 'article:delete' article.id %}" class=" btn btn-danger">Sil</a> </td>
+
+        </tr>
+
+        {% endfor %}
+    </tbody>
+
+    {% else %}
+
+    <div class="alert alert-warning">Henüz hiç makaleniz bulunmuyor ...</div>
+
+    {% endif %}
+
+
+
+
+
+</table>
+
+<br>
+<a style="padding: 1rem 2rem ;" href="{% url 'article:addarticle' %}" class="btn bg-dark text-white"> Makale Ekle  >>>></a> {% endblock body %}

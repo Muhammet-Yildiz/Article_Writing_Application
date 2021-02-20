@@ -1,0 +1,51 @@
+{% extends "layout.html" %} {% block static %}
+
+<link rel="stylesheet" href="/static/css/profile.css"> {% endblock static %} {% block body %} {% load crispy_forms_tags %}
+<h2>Profil sayfası </h2>
+
+<hr>
+
+<div class="profile_field">
+
+    <img src="{{user.profile.profile_image.url}}" alt="user-photo">
+
+    <div class="user-info">
+
+        <h5>Kullanıcı adı : </h5>
+        <p>
+
+            {{user.username}}
+        </p>
+        <br>
+        <h5>Email : </h5>
+        <p>
+            {{user.email}}
+
+        </p>
+
+    </div>
+
+
+
+</div>
+
+
+<form method="post" class="user-update-form" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <legend> Profile Bilgileri </legend>
+
+    {{u_form|crispy}} {{p_form|crispy}}
+    <button type="submit" class="btn ">Bilgileri  Güncelle </button>
+
+</form>
+
+
+
+
+
+
+
+
+{% endblock body %}

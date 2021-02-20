@@ -1,0 +1,44 @@
+form button {
+    width: 100%;
+    background-color: rgb(4, 88, 184);
+    padding: 0.3rem;
+    transition: 650ms ease;
+    color: white;
+}
+
+form button:hover {
+    width: 100%;
+    background-color: rgb(0, 55, 117);
+}
+
+form input {
+    box-shadow: none !important;
+}
+
+form input:hover {
+    box-shadow: none !important;
+}
+
+form {
+    position: relative;
+}
+
+.see {
+    position: relative;
+    float: right;
+    bottom: 1.7rem;
+    right: 9px;
+    visibility: hidden;
+    opacity: 0.6;
+    z-index: 99;
+}
+
+.see2 {
+    position: relative;
+    float: right;
+    bottom: 1.7rem;
+    right: 9px;
+    visibility: hidden;
+    opacity: 0.6;
+    z-index: 99;
+}

@@ -1,0 +1,14 @@
+{% extends 'layout.html' %} {% block static %}
+<link rel="stylesheet" href="/static/css/addarticle.css"> {% endblock static %} {% block body %}
+
+
+
+
+<form method="post" enctype="multipart/form-data">
+
+
+    <h3>Makale Güncelle </h3>
+    <hr> {% csrf_token %} {{form.as_p}} {{form.media}}
+    <button type="submit" class="btn btn-info ">Makale Güncelle  </button>
+</form>
+{% endblock body %}

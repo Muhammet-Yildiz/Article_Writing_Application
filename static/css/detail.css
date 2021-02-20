@@ -1,0 +1,291 @@
+body {
+    width: 100%;
+    height: auto !important;
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+}
+
+.textarea--auto-height {
+    resize: none;
+    outline: 0;
+    border: none;
+    width: 100%;
+    min-height: 38px;
+    border-bottom: 2px black solid;
+    padding-left: 0.4rem;
+    padding-top: 0.3rem;
+}
+
+.orange {
+    color: rgb(0, 102, 255) !important;
+}
+
+.ALL {
+    height: auto;
+    /* border: red solid 3px */
+}
+
+.comment-field {
+    /* border: 5px red solid; */
+    height: auto;
+}
+
+.comment-btn {
+    margin-top: 1rem;
+    float: right;
+    border: none;
+    outline: 0;
+    padding: 0.5rem;
+    border-radius: 2px;
+    transition: 650ms ease;
+    font-weight: 610;
+    border: 2px solid transparent;
+}
+
+.comment-btn[type="submit"]:hover {
+    background-color: rgba(173, 10, 10, 0.8) !important;
+    border: 2px solid black;
+}
+
+.comment-btn[type="submit"]:focus {
+    background-color: rgba(173, 10, 10, 0.8) !important;
+    border: 2px solid black;
+    outline: invert;
+}
+
+
+/* ASIL CSS LERİMİZ  ---------------------  - --  */
+
+
+/* COMMENT ALANI İÇİN BASLAYALIM  */
+
+.Comment-emp {
+    padding: 1rem 2rem;
+    position: relative;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-image {
+    /* border: 1px green solid; */
+    display: flex;
+    justify-content: center;
+    width: 70px;
+    padding-top: 10px;
+    max-height: 150px;
+    position: relative;
+}
+
+.Comment-content {
+    /* border: 5px yellow solid; */
+    width: 95%;
+    margin-left: 1rem;
+}
+
+.Comment-content .Comment-author {
+    display: flex;
+    align-items: center;
+    /* border: orange solid 3px; */
+}
+
+.Comment-author h6 {
+    margin-right: 1rem;
+    padding-top: 5px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.Comment-content pre {
+    /* border: steelblue solid 5px; */
+    height: auto;
+    font-family: italic;
+    font-weight: 350;
+    opacity: 0.9;
+}
+
+.Comment-content .Comment-vote {
+    /* border: rgb(180, 70, 143) solid 5px; */
+    display: flex;
+    align-items: center;
+}
+
+.Comment-content .Comment-vote form:nth-child(2) a {
+    margin-left: 1rem;
+}
+
+.Comment-vote .yanıtla1 {
+    margin-left: 1.3rem;
+    border: none;
+    background-color: white;
+    outline: 0;
+}
+
+.seeAnswerMore {
+    /* border: greenyellow solid 5px; */
+    outline: 0;
+    display: flex;
+    align-items: center;
+    color: rgb(11, 11, 173);
+    margin-top: 14px;
+    position: relative;
+}
+
+.rotate {
+    transform: rotate(180deg);
+    transition: 50ms ease;
+}
+
+.seeAnswerMore i {
+    margin-left: 0.5rem;
+    position: absolute;
+    font-size: 1.2rem;
+    left: -9px;
+    top: 7px;
+    /* border: red solid 3px; */
+    height: 13px
+}
+
+.seeAnswerMore div.görüntüle {
+    color: rgb(11, 11, 173);
+    padding-left: 1.3rem;
+    cursor: pointer;
+}
+
+
+/* cevapları goruntule kısmı acılması css  */
+
+.Answer-view {
+    width: 100%;
+    height: auto;
+    /* border: black solid 6px; */
+    display: none
+}
+
+.Answer-emp {
+    /* border: rgb(0, 255, 179) solid 6px; */
+    height: auto;
+    padding-left: 7rem;
+    display: flex;
+}
+
+.Answer-emp .Answer-content {
+    /* border: red solid 3px; */
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.Answer-content .Answer-author {
+    display: flex;
+    align-items: center;
+    /* border: tomato solid 5px; */
+}
+
+.Answer-author h6 {
+    margin-right: 1rem;
+    padding-top: 5px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.Answer-content pre {
+    /* border: rgb(190, 33, 5) solid 1px; */
+    font-family: italic;
+    font-weight: 650;
+}
+
+.Answer-content .Answer-vote {
+    /* border: rebeccapurple solid 5px; */
+    display: flex;
+}
+
+.Answer-content .Answer-vote form:nth-child(2) a {
+    margin-left: 1rem;
+}
+
+.Answer-vote .answer-yanıtla {
+    margin-left: 1rem;
+    border: none;
+    background-color: white;
+    outline: 0;
+}
+
+
+/* YANITLA BUTONU YORUMUN İÇİNDEKİ  */
+
+.Yanıtla-form {
+    width: 100%;
+    /* border: red solid 3px; */
+    display: none
+}
+
+.yanıtla-emp {
+    /* border: black solid 3px; */
+    width: 100%;
+    height: auto;
+    margin-top: 0.3rem;
+    padding: 5px;
+    display: flex;
+}
+
+.Yanıtla-form .cevapla-input {
+    /* border: rgb(209, 209, 17) solid 3px; */
+    width: 100%;
+    margin-left: 6px;
+    padding-top: 8px;
+}
+
+.Yanıtla-form .cevapla-input .btn-twice {
+    /* border: green solid 3px; */
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-twice button {
+    margin: 0 0.6rem;
+    border: none;
+    background-color: white;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    font-family: sans-serif;
+    outline: 0;
+    padding: 0.3rem 0.6rem;
+    transition: 650ms ease;
+}
+
+.btn-twice button:hover {
+    background-color: rgb(201, 200, 200);
+    outline: 0;
+}
+
+.yanıtla2 {
+    outline: 0;
+    padding: 10px;
+}
+
+.yanıtla2[type="submit"]:hover {
+    background-color: rgb(170, 4, 4) !important;
+}
+
+.Comment-vote a i {
+    /* background-color: red !important; */
+    text-decoration: none
+}
+
+.Comment-vote a:hover {
+    text-decoration: none;
+}
+
+.Answer-vote a i {
+    text-decoration: none
+}
+
+.Answer-vote a:hover {
+    text-decoration: none;
+}
+
+
+/* .Comment-vote a:hover {
+    background-color: yellow;
+} */

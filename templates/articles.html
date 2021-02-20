@@ -1,0 +1,88 @@
+{% extends 'layout.html' %} {% block static %}
+<link rel="stylesheet" href="/static/css/article.css"> {% endblock static %} {% block body %}
+
+<h2>MAKALELER </h2>
+
+
+<form class="search-form">
+    <br>
+    <input placeholder="Makale Ara ..." type="text" name="query" class="form-control form-control-md w-100"><br>
+    <button style="background-color: rgb(4, 88, 184);" type="submit " class="btn text-white  ">  Ara </button>
+
+</form>
+
+
+{% if all_articles %} {% for article in all_articles %}
+
+
+<a style="text-decoration :none" href="{% url 'article:detail'  article.id %}">
+
+    <h2 style="margin-top: 1rem; color :rgb(4, 88, 184)  "> {{article.title}} </h2>
+
+</a>
+
+<h6 style="margin : 1rem 0   ; color :black  ">{{article.author }} tarafından olusturuldu </h6>
+
+<p class="text-danger" style="margin: 0.5rem 0; ">
+    <small style="font-weight: bold;">
+            {{article.created_date}} 
+    </small>
+</p>
+
+{% if article.article_image %}
+
+
+<a href="{% url 'article:detail'  article.id %}">
+
+    <img style="margin: 2rem 0 ;" width="320px " height="320px " src="{{article.article_image.url}}" alt="photo">
+
+</a>
+
+{% endif %}
+
+<div class="try" style="background-color: rgb(247, 247, 247);padding : 1.5rem ;margin-bottom : 1rem   ">
+
+    {{article.content|safe|truncatewords:30 }}
+
+</div>
+<div style="margin-bottom: 4rem ;">
+    <a href="{% url 'article:detail'  article.id %}" class="btn color-dark " style="float: right;">Devamını oku >> </a>
+
+</div>
+
+
+
+
+{% endfor %}
+
+<center>
+    <br><br><br>
+    <br><br> {% if all_articles.has_previous %}
+
+    <a type="button" class="btn mb-5  color-dark " title="Önceki sayfa" href="?{% if keyword %}query={{keyword}}&{% endif%}page={{all_articles.previous_page_number}}">
+        << </a>
+
+
+            {% endif %} {% for l in page_range %} {% if all_articles.number == l %}
+            <a style="margin: 0 0.2rem ;" type="button" class="btn mb-5 active bg-secondary " href="?{% if keyword %}query={{keyword}}&{% endif%}page={{l}}">{{l}} </a> {% else %}
+            <a style="margin: 0 0.2rem ;" type="button" class="btn  mb-5 color-dark" href="?{% if keyword %}query={{keyword}}&{% endif%}page={{l}}">{{l}} </a> {% endif %} {% endfor %} {% if all_articles.has_next %}
+
+            <a type="button" class="btn mb-5  color-dark" title="Sonraki sayfa" href="?{% if keyword %}query={{keyword}}&{% endif%}page={{all_articles.next_page_number}}"> >></a> {% endif %}
+
+
+</center>
+
+
+
+
+
+
+{% else %}
+<br>
+<div class="alert alert-warning  mt-3 ">
+
+    Makale Bulunamadı
+
+</div>
+
+{% endif %} {% endblock body %}

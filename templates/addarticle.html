@@ -1,0 +1,19 @@
+{% extends 'layout.html' %} {% block static %}
+<link rel="stylesheet" href="/static/css/addarticle.css"> {% endblock static %} {% block script %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock script %} {% block body %} {% load crispy_forms_tags %}
+
+<form method="post" enctype="multipart/form-data">
+
+
+
+    <h3>Makale ekleme sayfası </h3>
+    <hr> {% csrf_token %} {{form|crispy}} {{form.media}}
+    <br>
+    <div class="g-recaptcha" data-sitekey="6Ld_d1kaAAAAAPolqAdtBrXPzgJLXIZrSv1BUx-t"></div>
+    <br>
+    <button type="submit" class="btn btn-info ">Makale Ekle  </button>
+</form>
+
+
+{% endblock body %}
