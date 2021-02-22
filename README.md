@@ -1,4 +1,26 @@
 # Article_Writing_Application
+ 
+ ## Kurulum  <br/>
+ 
+İndirdikten sonra proje dizini içerisinde : 
+
+ ` virtualenv venv`
+
+ Linux & Mac: `source venv/bin/activate `
+
+Windows: `venv\Scripts\activate `
+
+`pip install -r requirements.txt `
+
+`python manage.py makemigrations`
+
+`python manage.py migrate`
+
+`python manage.py createsuper`
+
+`python manage.py runserver`
+ 
+ <br/>
 
 ![picture1](https://user-images.githubusercontent.com/72153125/108601644-a4b8a480-73ae-11eb-8585-641a0c946b7b.png)
 
